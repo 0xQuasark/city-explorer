@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <h1>Vite + React</h1>
+      <h1>Day6, Yay</h1>
       {console.log(API_KEY)}
     </>
   )
