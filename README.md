@@ -9,7 +9,7 @@
 Lets a user find out more information about a city
 
 ## Architecture
-
+![Day 6 Architecture](./public/architecture.day6.png)
 
 ## Time Logs
 
