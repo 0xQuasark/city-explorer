@@ -13,6 +13,7 @@ class App extends React.Component {
     this.state = {
       searchQuery: 'Seattle',
       locationData: null,
+      mapURL: null,
     }
   }
 
@@ -25,8 +26,11 @@ class App extends React.Component {
       .then(response => {
         const newLocationData = response.data[0];
         this.setState({locationData: newLocationData})
-        console.log('Success: ', newLocationData)
-        this.prepareRender();
+
+        const mapQueryURL = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${newLocationData.lat},${newLocationData.lon}&zoom=9`;
+        this.setState({mapURL: mapQueryURL});
+
+        // console.log('SUCCESS: ', mapQueryURL)
       })
       .catch(error => {
         console.log('Error: ', error)
@@ -56,6 +60,7 @@ class App extends React.Component {
           city={this.state.searchQuery}
           lat={this.state.locationData ? this.state.locationData.lat : ''}
           lon={this.state.locationData ? this.state.locationData.lon : ''}
+          mapURL={this.state.mapURL ? this.state.mapURL : null}
         />
       </>
       )
