@@ -45,3 +45,7 @@ img {
   display: inline;
   width: 400px;
 }
+
+.error-message {
+  color: red;
+}

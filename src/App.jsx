@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import axios from 'axios';
 import CityDetails from './components/CityDetails';
+import Error from './components/Error';
 
 // Vites way of loading files from a .env file -> requires "VITE_" to be used at the beginning of your key
 const API_KEY = import.meta.env.VITE_LOCATIONIQ_API_KEY;
@@ -14,6 +15,7 @@ class App extends React.Component {
       searchQuery: 'Seattle',
       locationData: null,
       mapURL: null,
+      errorState: null,
     }
   }
 
@@ -34,6 +36,7 @@ class App extends React.Component {
       })
       .catch(error => {
         console.log('Error: ', error)
+        this.setState({errorState: error.message})
       });
 
   }
@@ -62,6 +65,9 @@ class App extends React.Component {
           lon={this.state.locationData ? this.state.locationData.lon : ''}
           mapURL={this.state.mapURL ? this.state.mapURL : null}
         />
+
+        {this.state.errorState ? <Error error={this.state.errorState}/> : ''}
+
       </>
       )
     }
