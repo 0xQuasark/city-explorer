@@ -9,16 +9,19 @@
 Lets a user find out more information about a city
 
 ## Architecture
+![Day 7 Aechitecture](./public/architecture.day7.png)
 ![Day 6 Architecture](./public/architecture.day6.png)
+
+[Whiteboard Link](https://projects.invisionapp.com/freehand/document/Kv8Eoqf3X)
 
 ## Time Logs
 
 ### Monday 21st
 Name of feature: Build app scaffold and API connect to Location IQ
-Estimate of time needed to complete: 
-Start time: 
-Finish time: 
-Actual time needed to complete: 
+Estimate of time needed to complete: 2 hours
+Start time: 12:30
+Finish time: 16:00
+Actual time needed to complete: 2.5hrs
 
 
 ## Getting Started
