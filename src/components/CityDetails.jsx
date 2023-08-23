@@ -8,7 +8,7 @@ class CityDetails extends React.Component {
         <p>City Searched for: {this.props.city}</p>
         <p>Latitude: {this.props.lat}</p>
         <p>Longitude: {this.props.lon}</p>
-        <p>Map:</p>
+        {this.props.mapURL ? <h2>Map:</h2> : ''}
           <img src={this.props.mapURL}></img>
 
       </>
