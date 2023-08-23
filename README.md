@@ -27,9 +27,9 @@ Actual time needed to complete:
 ### Monday 21st
 Name of feature: Build app scaffold and API connect to Location IQ
 Estimate of time needed to complete: 2 hours
-Start time: 12:30
+Start time: 13:00
 Finish time: 16:00
-Actual time needed to complete: 2.5hrs
+Actual time needed to complete: 3hrs
 
 
 ## Getting Started
