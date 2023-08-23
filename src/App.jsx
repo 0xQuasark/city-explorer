@@ -33,7 +33,7 @@ class App extends React.Component {
         const mapQueryURL = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${newLocationData.lat},${newLocationData.lon}&zoom=9`;
         this.setState({mapURL: mapQueryURL});
 
-        return axios.get(`http://localhost:3001/weather?city=${this.state.searchQuery}&lat={newLocationData.lat}}`);
+        return axios.get(`http://localhost:3001/weather?city=${this.state.searchQuery}&lat={newLocationData.lat}&lon=${newLocationData.lon}`);
       })
       .then(response =>{
         console.log('something happened!', response.data)
