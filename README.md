@@ -9,7 +9,13 @@
 Lets a user find out more information about a city
 
 ## Architecture
+### Day 8
+![Day 8 Architecture](./public/architecture.day8.png)
+
+### Day 7
 ![Day 7 Architecture](./public/architecture.day7.png)
+
+### Day 6
 ![Day 6 Architecture](./public/architecture.day6.png)
 
 [Whiteboard Link](https://projects.invisionapp.com/freehand/document/Kv8Eoqf3X)
