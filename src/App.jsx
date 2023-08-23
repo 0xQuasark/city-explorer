@@ -3,10 +3,12 @@ import './App.css'
 import axios from 'axios';
 import CityDetails from './components/CityDetails';
 import Error from './components/Error';
+import Weather from './components/Weather';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 // Vites way of loading files from a .env file -> requires "VITE_" to be used at the beginning of your key
 const API_KEY = import.meta.env.VITE_LOCATIONIQ_API_KEY;
-
 
 class App extends React.Component {
   constructor() {
@@ -16,13 +18,12 @@ class App extends React.Component {
       locationData: null,
       mapURL: null,
       errorState: null,
+      forecastData: null,
     }
   }
 
   handleForm = (e) => {
     e.preventDefault();
-    // console.log('City name provided', this.state.searchQuery);
-    // console.log('API Key: ', API_KEY)
     const urlQuery = `https://us1.locationiq.com/v1/search.php?key=${API_KEY}&q=${this.state.searchQuery}&format=json`;
     axios.get(urlQuery)
       .then(response => {
@@ -32,13 +33,16 @@ class App extends React.Component {
         const mapQueryURL = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${newLocationData.lat},${newLocationData.lon}&zoom=9`;
         this.setState({mapURL: mapQueryURL});
 
-        // console.log('SUCCESS: ', mapQueryURL)
+        return axios.get(`http://localhost:3001/weather?city=${this.state.searchQuery}&lat={newLocationData.lat}}`);
+      })
+      .then(response =>{
+        console.log('something happened!', response.data)
+        this.setState({forecastData: response.data})
       })
       .catch(error => {
         console.log('Error: ', error)
         this.setState({errorState: error.message})
       });
-
   }
 
   handleChange= (e) => {
@@ -67,6 +71,7 @@ class App extends React.Component {
         />
 
         {this.state.errorState ? <Error error={this.state.errorState}/> : ''}
+        {this.state.forecastData ? <Weather weatherData={this.state.forecastData}/> : ''}
 
       </>
       )
