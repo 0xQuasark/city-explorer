@@ -6,6 +6,7 @@ import Error from './components/Error';
 import Weather from './components/Weather';
 import Movie from './components/Movie';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Table from 'react-bootstrap/Table';
 
 
 // Vites way of loading files from a .env file -> requires "VITE_" to be used at the beginning of your key
@@ -78,8 +79,29 @@ class App extends React.Component {
           mapURL={this.state.mapURL ? this.state.mapURL : null}
         />
 
-        {this.state.forecastData ? <Weather weatherData={this.state.forecastData} /> : ''}
-        {this.state.movieData && <Movie movieData={this.state.movieData} />}
+        <h2> Weather data:</h2>
+          <Table striped bordered hover size="sm" variant="dark">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/*add Movie call here, map and pass individual data*/}
+              {this.state.forecastData && this.state.forecastData.map(weather => (
+                <Weather key={weather.date} weatherData={weather} />
+              ))}
+            </tbody>
+          </Table>
+
+        {/* {this.state.forecastData ? <Weather weatherData={this.state.forecastData} /> : ''} */}
+
+        {/* {this.state.movieData && <Movie movieData={this.state.movieData} />} */}
+        {/* {this.state.movieData && this.state.movieData.map(movie => (
+                <Movie key={movie.id} movieData={movie} />
+        ))} */}
+
         {this.state.errorState ? <Error error={this.state.errorState} /> : ''}
 
       </>
