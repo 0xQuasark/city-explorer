@@ -10,7 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Vites way of loading files from a .env file -> requires "VITE_" to be used at the beginning of your key
 const API_KEY = import.meta.env.VITE_LOCATIONIQ_API_KEY;
-const SERVER = import.meta.env.VITE_MY_API_SERVER;
+// const SERVER = import.meta.env.VITE_MY_API_SERVER;
+const SERVER = 'http://localhost:3001';
 
 class App extends React.Component {
   constructor() {
