@@ -3,49 +3,25 @@ import Table from 'react-bootstrap/Table';
 
 class Movie extends React.Component {
 
-  generateMovieTable = () => {
-    // console.log('weather called');
-    let movieData = this.props.movieData;
-    let movieCounter = 0; // Store the current movieCounter value
-    
-    return Object.keys(movieData).map(key => {
-      
-      movieCounter++;
-
-      return (
-        <tr key={key}>
-          <td><img src={movieData[key].image_url} /></td>
-          <td>
-            <strong>#{movieCounter}: </strong>      {movieData[key].title}  <br /> 
-            <strong>Overview: </strong>   {movieData[key].overview}  <br /> 
-            <strong>Overage Votes: </strong>   {movieData[key].averageVotes}  <br /> 
-            <strong>Total Votes: </strong>   {movieData[key].totalVotes}  <br /> 
-            <strong>Popularity: </strong>   {movieData[key].popularity}  <br /> 
-            <strong>Released: </strong>   {movieData[key].released_on}  <br /> 
-          </td>
-        </tr>
-      );
-    });
-  }
-
   render () {
-
-    let movieTable = this.generateMovieTable();
+    // console.log('movieData: ', this.props.movieData)
+    // console.log(this.props.movieCounter)
+    const movieData = this.props.movieData;
+    const movieCounter = this.props.movieCounter;
 
     return (
       <>
-        <h2> Movie data:</h2>
-        <Table striped bordered hover size="sm" variant="dark">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            {movieTable}
-          </tbody>
-        </Table>
+        <tr>
+          <td><img src={movieData.image_url} /></td>
+          <td>
+            <strong>#{movieCounter}: </strong>  {movieData.title}         <br /> 
+            <strong>Overview: </strong>         {movieData.overview}      <br /> 
+            <strong>Overage Votes: </strong>    {movieData.averageVotes}  <br /> 
+            <strong>Total Votes: </strong>      {movieData.totalVotes}    <br /> 
+            <strong>Popularity: </strong>       {movieData.popularity}    <br /> 
+            <strong>Released: </strong>         {movieData.released_on}   <br /> 
+          </td>
+        </tr>
       </>
     )
   }
