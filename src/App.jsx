@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Vites way of loading files from a .env file -> requires "VITE_" to be used at the beginning of your key
 const API_KEY = import.meta.env.VITE_LOCATIONIQ_API_KEY;
+const SERVER = import.meta.env.VITE_MY_API_SERVER;
 
 class App extends React.Component {
   constructor() {
@@ -35,12 +36,12 @@ class App extends React.Component {
         const mapQueryURL = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${newLocationData.lat},${newLocationData.lon}&zoom=9`;
         this.setState({mapURL: mapQueryURL});
 
-        return axios.get(`http://localhost:3001/weather?city=${this.state.searchQuery}&lat=${newLocationData.lat}&lon=${newLocationData.lon}`);
+        return axios.get(`${SERVER}/weather?city=${this.state.searchQuery}&lat=${newLocationData.lat}&lon=${newLocationData.lon}`);
       })
       .then(response =>{
         // console.log('something happened!', response.data)
         this.setState({forecastData: response.data});
-        return axios.get(`http://localhost:3001/movies/?cityName=${this.state.searchQuery}`);
+        return axios.get(`${SERVER}/movies/?cityName=${this.state.searchQuery}`);
       })
       .then(response => {
         this.setState({movieData : response.data});
