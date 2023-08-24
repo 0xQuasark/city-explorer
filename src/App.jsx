@@ -63,12 +63,14 @@ class App extends React.Component {
   render () {
     return (
       <>
+
+        {this.state.errorState ? <Error error={this.state.errorState} /> : ''}
+
         <h1>City Explorer v3</h1>
         <form onSubmit={this.handleForm}>
-          <input placeholder="Enter City Name" name="city" value={this.state.searchQuery? this.state.searchQuery : 'Enter City Name'} type="text" onChange={this.handleChange} />
+          <input placeholder="Enter City Name" name="city" value={this.state.searchQuery? this.state.searchQuery : ''} type="text" onChange={this.handleChange} />
           <button type='submit' >
               Explore!
-              {/* <Link to="/search">Search!</Link> */}
             </button>
         </form>
 
@@ -78,8 +80,10 @@ class App extends React.Component {
           lon={this.state.locationData ? this.state.locationData.lon : ''}
           mapURL={this.state.mapURL ? this.state.mapURL : null}
         />
-
-        <h2> Weather data:</h2>
+        
+      {this.state.forecastData &&
+        <>
+          <h2> Weather data:</h2>
           <Table striped bordered hover size="sm" variant="dark">
             <thead>
               <tr>
@@ -88,21 +92,33 @@ class App extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {/*add Movie call here, map and pass individual data*/}
-              {this.state.forecastData && this.state.forecastData.map(weather => (
+                {this.state.forecastData.map(weather => (
                 <Weather key={weather.date} weatherData={weather} />
               ))}
             </tbody>
           </Table>
+        </>
+      }
 
-        {/* {this.state.forecastData ? <Weather weatherData={this.state.forecastData} /> : ''} */}
 
-        {/* {this.state.movieData && <Movie movieData={this.state.movieData} />} */}
-        {/* {this.state.movieData && this.state.movieData.map(movie => (
-                <Movie key={movie.id} movieData={movie} />
-        ))} */}
+        <h2>Movie data:</h2>
+        <Table striped bordered hover size="sm" variant="dark">
+          <thead>
+            <tr>
+              <th>Poster</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody> 
+            {this.state.movieData && this.state.movieData.map((movie, index) => {
+              return (
+                <Movie key={movie.id} movieData={movie} movieCounter={index + 1} />
+              );
+            })}
+          </tbody>
+        </Table>
 
-        {this.state.errorState ? <Error error={this.state.errorState} /> : ''}
+
 
       </>
       )
