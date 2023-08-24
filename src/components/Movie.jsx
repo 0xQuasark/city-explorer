@@ -10,9 +10,9 @@ class Movie extends React.Component {
     
     return Object.keys(movieData).map(key => (
       <tr key={key}>
-        <td><img src={movieData[key].image_url} /></td>
+        <td><img src={movieData[key].image_url} alt={key+1}/></td>
         <td>
-          <strong>Title: </strong>      {movieData[key].title}  <br /> 
+          <strong>#{key+1} Title: </strong>      {movieData[key].title}  <br /> 
           <strong>Overview: </strong>   {movieData[key].overview}  <br /> 
           <strong>Overage Votes: </strong>   {movieData[key].averageVotes}  <br /> 
           <strong>Total Votes: </strong>   {movieData[key].totalVotes}  <br /> 

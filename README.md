@@ -27,8 +27,8 @@ Lets a user find out more information about a city
 Name of feature: Build Node Express serve with /weather API
 Estimate of time needed to complete: 2 hours
 Start time: 14:00
-Finish time: 
-Actual time needed to complete: 
+Finish time: 18:00
+Actual time needed to complete: 4 hours
 
 
 ### Tuesday 22nd
