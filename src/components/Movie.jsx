@@ -3,25 +3,29 @@ import Table from 'react-bootstrap/Table';
 
 class Movie extends React.Component {
 
-
   generateMovieTable = () => {
     // console.log('weather called');
     let movieData = this.props.movieData;
+    let movieCounter = 0; // Store the current movieCounter value
     
-    return Object.keys(movieData).map(key => (
-      <tr key={key}>
-        <td><img src={movieData[key].image_url} alt={key+1}/></td>
-        <td>
-          <strong>#{key+1} Title: </strong>      {movieData[key].title}  <br /> 
-          <strong>Overview: </strong>   {movieData[key].overview}  <br /> 
-          <strong>Overage Votes: </strong>   {movieData[key].averageVotes}  <br /> 
-          <strong>Total Votes: </strong>   {movieData[key].totalVotes}  <br /> 
-          <strong>Popularity: </strong>   {movieData[key].popularity}  <br /> 
-          <strong>Released: </strong>   {movieData[key].released_on}  <br /> 
-        </td>
-      </tr>
-    ));
+    return Object.keys(movieData).map(key => {
+      
+      movieCounter++;
 
+      return (
+        <tr key={key}>
+          <td><img src={movieData[key].image_url} /></td>
+          <td>
+            <strong>#{movieCounter}: </strong>      {movieData[key].title}  <br /> 
+            <strong>Overview: </strong>   {movieData[key].overview}  <br /> 
+            <strong>Overage Votes: </strong>   {movieData[key].averageVotes}  <br /> 
+            <strong>Total Votes: </strong>   {movieData[key].totalVotes}  <br /> 
+            <strong>Popularity: </strong>   {movieData[key].popularity}  <br /> 
+            <strong>Released: </strong>   {movieData[key].released_on}  <br /> 
+          </td>
+        </tr>
+      );
+    });
   }
 
   render () {
@@ -35,7 +39,7 @@ class Movie extends React.Component {
           <thead>
             <tr>
               <th>Image</th>
-              <th>details</th>
+              <th>Details</th>
             </tr>
           </thead>
           <tbody>
@@ -47,4 +51,4 @@ class Movie extends React.Component {
   }
 }
 
-export default Movie
+export default Movie;
