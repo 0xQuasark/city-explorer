@@ -22,12 +22,21 @@ Lets a user find out more information about a city
 
 ## Time Logs
 
+
+### Wed 23rd
+Name of feature: Build Node Express serve with /weather API
+Estimate of time needed to complete: 2 hours
+Start time: 14:00
+Finish time: 
+Actual time needed to complete: 
+
+
 ### Tuesday 22nd
 Name of feature: Build Node Express serve with /weather API
 Estimate of time needed to complete: 2 hours
-Start time: 
-Finish time: 
-Actual time needed to complete: 
+Start time: 13:30
+Finish time: 16:30
+Actual time needed to complete: 3hrs
 
 
 ### Monday 21st

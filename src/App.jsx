@@ -4,6 +4,7 @@ import axios from 'axios';
 import CityDetails from './components/CityDetails';
 import Error from './components/Error';
 import Weather from './components/Weather';
+import Movie from './components/Movie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -19,6 +20,7 @@ class App extends React.Component {
       mapURL: null,
       errorState: null,
       forecastData: null,
+      movieData: null,
     }
   }
 
@@ -33,11 +35,15 @@ class App extends React.Component {
         const mapQueryURL = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${newLocationData.lat},${newLocationData.lon}&zoom=9`;
         this.setState({mapURL: mapQueryURL});
 
-        return axios.get(`http://localhost:3001/weather?city=${this.state.searchQuery}&lat={newLocationData.lat}&lon=${newLocationData.lon}`);
+        return axios.get(`http://localhost:3001/weather?city=${this.state.searchQuery}&lat=${newLocationData.lat}&lon=${newLocationData.lon}`);
       })
       .then(response =>{
-        console.log('something happened!', response.data)
-        this.setState({forecastData: response.data})
+        // console.log('something happened!', response.data)
+        this.setState({forecastData: response.data});
+        return axios.get(`http://localhost:3001/movies/?cityName=${this.state.searchQuery}`);
+      })
+      .then(response => {
+        this.setState({movieData : response.data});
       })
       .catch(error => {
         console.log('Error: ', error)
@@ -54,7 +60,7 @@ class App extends React.Component {
   render () {
     return (
       <>
-        <h1>Day6, v2</h1>
+        <h1>City Explorer v3</h1>
         <form onSubmit={this.handleForm}>
           <input placeholder="Enter City Name" name="city" value={this.state.searchQuery? this.state.searchQuery : 'Enter City Name'} type="text" onChange={this.handleChange} />
           <button type='submit' >
@@ -70,8 +76,9 @@ class App extends React.Component {
           mapURL={this.state.mapURL ? this.state.mapURL : null}
         />
 
-        {this.state.errorState ? <Error error={this.state.errorState}/> : ''}
-        {this.state.forecastData ? <Weather weatherData={this.state.forecastData}/> : ''}
+        {this.state.forecastData ? <Weather weatherData={this.state.forecastData} /> : ''}
+        {this.state.movieData && <Movie movieData={this.state.movieData} />}
+        {this.state.errorState ? <Error error={this.state.errorState} /> : ''}
 
       </>
       )

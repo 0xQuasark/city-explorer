@@ -5,7 +5,7 @@ class Weather extends React.Component {
 
 
   generateTable = () => {
-    console.log('weather called');
+    // console.log('weather called');
     let weatherData = this.props.weatherData;
     
     return Object.keys(weatherData).map(key => (
@@ -20,7 +20,7 @@ class Weather extends React.Component {
   render () {
 
     let weatherTable = this.generateTable();
-    console.log(weatherTable);
+    // console.log(weatherTable);
 
     return (
       <>
